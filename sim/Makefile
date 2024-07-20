@@ -93,19 +93,19 @@ build_verilator: $(sv_list)
 	+1800-2017ext+sv \
 	-Wno-fatal \
 	$(VERILATOR_5X_OPTS) \
-	--top-module $(top_module) \
+	--top-module top_exp_ahb \
 	-DSCR1_TRGT_SIMULATION \
 	-D$(SIM_TRACE_DEF) \
 	-D$(SIM_CFG_DEF) \
 	--clk clk \
-	--exe $(scr1_wrapper) \
+	--exe $(root_dir)/sim/verilator_wrap/exp_ahb_wrapper.c \
 	--Mdir $(bld_dir)/verilator \
 	-I$(rtl_inc_dir) \
 	-I$(rtl_inc_tb_dir) \
 	$(SIM_BUILD_OPTS) \
 	$(sv_list); \
 	cd verilator; \
-	$(MAKE) -f V$(top_module).mk;
+	$(MAKE) -f Vtop_exp_ahb.mk;
 
 build_verilator_wf: $(sv_list)
 	cd $(bld_dir); \
@@ -115,14 +115,14 @@ build_verilator_wf: $(sv_list)
 	+1800-2017ext+sv \
 	-Wno-fatal \
 	$(VERILATOR_5X_OPTS) \
-	--top-module $(top_module) \
+	--top-module top_exp_ahb \
 	-DSCR1_TRGT_SIMULATION \
 	-D$(SIM_TRACE_DEF) \
 	-D$(SIM_CFG_DEF) \
 	-CFLAGS -DVCD_TRACE -CFLAGS -DTRACE_LVLV=20 \
 	-CFLAGS -DVCD_FNAME=simx.vcd \
 	--clk clk \
-	--exe $(scr1_wrapper) \
+	--exe $(root_dir)/sim/verilator_wrap/exp_ahb_wrapper.c \
 	--trace \
 	--trace-params \
     --trace-structs \
@@ -133,6 +133,6 @@ build_verilator_wf: $(sv_list)
 	$(SIM_BUILD_OPTS) \
 	$(sv_list); \
 	cd verilator; \
-	$(MAKE) -f V$(top_module).mk;
+	$(MAKE) -f Vtop_exp_ahb.mk;
 
 

@@ -106,7 +106,7 @@ module scr1_pipe_top (
 //-------------------------------------------------------------------------------
 
 // Pipeline control
-logic [`SCR1_XLEN-1:0]                      curr_pc;                // Current PC
+logic [`SCR1_XLEN-1:0]                      curr_pc /*verilator public_flat_rd*/;                // Current PC
 logic [`SCR1_XLEN-1:0]                      next_pc;                // Is written to MEPC on interrupt trap
 logic                                       new_pc_req;             // New PC request (jumps, branches, traps etc)
 logic [`SCR1_XLEN-1:0]                      new_pc;                 // New PC
