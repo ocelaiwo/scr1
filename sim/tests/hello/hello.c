@@ -1,7 +1,9 @@
-#include "sc_print.h"
+volatile unsigned long *htif = (unsigned long *)0x80001000;
 
 int main()
 {
-    sc_printf("Hello from SCR1!\n");
-    return 0;
+  while (1) {
+    *htif = 1;
+  }
+  return 0;
 }
